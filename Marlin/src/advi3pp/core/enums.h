@@ -95,6 +95,8 @@ enum class Page: uint16_t {
   AutomaticLeveling       = 144 | EnterNoPrint | ExitFinishMove,
   BLTouchTesting1B        = 146 | EnterNoPrint | Temporary,
   ChangeTemperature       = 148 | Temporary,
+  TuningNoSensor          = 150,
+  SettingsNoSensor        = 152,
 
   Boot                    = 200 | Temporary
 };

@@ -44,8 +44,13 @@ bool Controls::on_dispatch(KeyValue key_value) {
     case KeyValue::Temps:           show_temps(); break;
     case KeyValue::Print:           show_print(); break;
     case KeyValue::Controls:        pages.show(Page::Controls, Action::None); break;
+    #ifdef ADVi3PP_PROBE
     case KeyValue::Tuning:          pages.show(Page::Tuning, Action::None); break;
     case KeyValue::Settings:        pages.show(Page::Settings, Action::None); break;
+    #else
+    case KeyValue::Tuning:          pages.show(Page::TuningNoSensor, Action::None); break;
+    case KeyValue::Settings:        pages.show(Page::SettingsNoSensor, Action::None); break;
+    #endif
     case KeyValue::Infos:           pages.show(Page::Infos, Action::None); break;
     case KeyValue::Motors:          pages.show(Page::MotorsSettings, Action::None); break;
     case KeyValue::Leveling:        show_leveling(); break;
