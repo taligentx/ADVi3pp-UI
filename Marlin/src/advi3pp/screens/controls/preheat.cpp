@@ -83,19 +83,23 @@ bool Preheat::on_enter() {
 
 //! Handle Previous command
 void Preheat::previous_command() {
-  if(index_ <= 0)
+  if(index_ < 0)
     return;
   retrieve_presets();
-  --index_;
+  if (index_ == 0)
+    index_ = NB_PRESETS - 1;
+  else --index_;
   send_presets();
 }
 
 //! Handle Next command
 void Preheat::next_command() {
-  if(index_ >= NB_PRESETS - 1)
+  if(index_ > NB_PRESETS - 1)
       return;
   retrieve_presets();
-  ++index_;
+  if(index_ == NB_PRESETS - 1)
+    index_ = 0;
+  else ++index_;
   send_presets();
 }
 

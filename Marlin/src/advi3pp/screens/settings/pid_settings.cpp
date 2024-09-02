@@ -63,19 +63,23 @@ void PidSettings::bed_command() {
 
 //! Handle the show previous PID values command
 void PidSettings::previous_command() {
-  if(index_ <= 0)
+  if(index_ < 0)
     return;
   from_lcd();
-  index_ -= 1;
+  if(index_ == 0)
+    index_ = Pid::NB_PIDs - 1;
+  else index_ -= 1;
   to_lcd();
 }
 
 //! Handle the show next PID values command
 void PidSettings::next_command() {
-  if(index_ >= Pid::NB_PIDs - 1)
+  if(index_ > Pid::NB_PIDs - 1)
     return;
   from_lcd();
-  index_ += 1;
+  if(index_ == Pid::NB_PIDs - 1)
+    index_ = 0;
+  else index_ += 1;
   to_lcd();
 }
 

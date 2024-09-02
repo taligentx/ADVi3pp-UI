@@ -115,17 +115,21 @@ void SensorSettings::on_save_command() {
 
 //! Show the previous settings.
 void SensorSettings::previous_command() {
-  if(index_ <= 0) return;
-  index_ -= 1;
+  if(index_ < 0) return;
+  if(index_ == 0)
+    index_ = NB_SENSOR_POSITIONS;
+  else index_ -= 1;
   send_name();
   send_values();
 }
 
 //! Show the next settings.
 void SensorSettings::next_command() {
-  if(index_ >= NB_SENSOR_POSITIONS) // not -1 because we have also index #0 not counted in NB_SENSOR_POSITIONS
+  if(index_ > NB_SENSOR_POSITIONS) // not -1 because we have also index #0 not counted in NB_SENSOR_POSITIONS
     return;
-  index_ += 1;
+  if(index_ == NB_SENSOR_POSITIONS)
+    index_ = 0;
+  else index_ += 1;
   send_name();
   send_values();
 }
