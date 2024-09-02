@@ -28,7 +28,11 @@ EepromMismatch eeprom_mismatch;
 //! Handles the Save (Continue) command
 void EepromMismatch::on_save_command() {
   settings.save();
+#ifdef ADVi3PP_PROBE
   pages.show(Page::Setup, Action::Setup);
+#else
+  pages.show(Page::SetupNoSensor, Action::Setup);
+#endif
 }
 
 }
