@@ -1358,7 +1358,7 @@ int16_t getMaterialPresetBedTemp_celsius(unsigned int index)
 
 uint8_t getMaterialPresetFanSpeed_percent(unsigned int index)
 {
-  return thermalManager.fanSpeedPercent(ui.material_preset[index].fan_speed);
+  return ui8_to_percent(ui.material_preset[index].fan_speed);
 }
 
 void setMaterialPreset(unsigned int index, int16_t hotend_celcius, int16_t bed_celcius, uint8_t fan_percent)
