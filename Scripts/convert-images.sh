@@ -16,6 +16,8 @@ ret=$?; if [[ $ret != 0 ]]; then exit $ret; fi
 png="$( cd "${root}/DGUS-png" && pwd )"
 ret=$?; if [[ $ret != 0 ]]; then exit $ret; fi
 
+mkdir -p "${root}/Export"
+
 export="$( cd "${root}/Export" && pwd )"
 ret=$?; if [[ $ret != 0 ]]; then exit $ret; fi
 
@@ -51,7 +53,7 @@ function convert_images() {
     for f in "$1/"*.png ; do
         filename=$(basename "$f")
         name="${filename%.*}"
-        convert "$f" -type truecolor "BMP3:$2/${name}.bmp"
+        magick "$f" -type truecolor "BMP3:$2/${name}.bmp"
         ret=$?; if [[ $ret != 0 ]]; then exit $ret; fi
     done
 }
